@@ -7,8 +7,6 @@ defmodule NervesCaptivePortal.Application do
 
   def start(_type, _args) do
     children = [
-      # Start the Telemetry supervisor
-      NervesCaptivePortalWeb.Telemetry,
       # Start the PubSub system
       {Phoenix.PubSub, name: NervesCaptivePortal.PubSub},
       # Start the Endpoint (http/https)

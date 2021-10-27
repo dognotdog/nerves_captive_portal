@@ -6,7 +6,7 @@ defmodule NervesCaptivePortal do
   @doc """
   Modify a `VintageNet` network config with RFC8910 captive portal fields. Irrespective of the captive portal being currently active, if one exists it should always provide the right URL. For networks without a captive portal, the respective `114` option is also provided, to save user clients the trouble of trying alternate forms of captive portal discovery.
   """
-  def modify_network_config(config, captive_portal?)
+  def modify_network_config(config, captive_portal?) do
     if captive_portal? do
       put_in(config, [:dhcpd, :options, 114], "https://captive.portal/captive-portal/api")
       dnsd_records = Access.get(config[:dnsd], :records, [])
@@ -15,4 +15,5 @@ defmodule NervesCaptivePortal do
     else
       put_in(config, [:dhcpd, :options, 114], "urn:ietf:params:capport:unrestricted")
     end
+  end
 end

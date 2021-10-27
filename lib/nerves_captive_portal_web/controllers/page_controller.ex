@@ -1,10 +1,6 @@
 defmodule NervesCaptivePortalWeb.PageController do
   use NervesCaptivePortalWeb, :controller
 
-  def index(conn, _params) do
-    render(conn, "index.html")
-  end
-
   def captive_portal_api(conn, _params) do
     portal_url = Application.get_env(:nerves_captive_portal, :portal_url, "http://captive.portal/")
     conn
