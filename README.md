@@ -16,6 +16,29 @@ The captive portal according to RFC8910 and RFC8908 is made up of two components
 
 The API uses the `application/captive+json` MIME type.
 
+### Config
+
+The `:nerves_captive_portal` config can be used for setting up the portal API. The endpoint config should not have to be changed, but the actual portal URL and state indicating function can be set.
+
+```elixir
+# Configures the endpoint
+config :nerves_captive_portal, NervesCaptivePortalWeb.Endpoint,
+  url: [host: "captive.portal"],
+  https: [
+    port: 4001,
+    otp_app: :nerves_captive_portal,
+    keyfile: "priv/ssl/portal-key.pem",
+    certfile: "priv/ssl/portal-cert.pem",
+  ]
+
+# captive fun can either be
+# - a captured function/0
+# - a {module, method/0} tuple
+config :nerves_captive_portal,
+  portal_url: "http://captive.portal/",
+  captive_fun: fn -> true end
+```
+
 # Phoenix Info
 
 To start your Phoenix server:

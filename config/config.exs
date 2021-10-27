@@ -17,6 +17,13 @@ config :nerves_captive_portal, NervesCaptivePortalWeb.Endpoint,
     certfile: "priv/ssl/portal-cert.pem",
   ]
 
+# captive fun can either be
+# - a captured function/0
+# - a {module, method} tuple
+config :nerves_captive_portal,
+  portal_url: "http://captive.portal/",
+  captive_fun: fn -> true end
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
