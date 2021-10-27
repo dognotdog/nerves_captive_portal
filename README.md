@@ -16,6 +16,8 @@ The captive portal according to RFC8910 and RFC8908 is made up of two components
 
 The API uses the `application/captive+json` MIME type.
 
+When the captive portal routing is configured, assumed as IPv4 DHCP, `NervesCaptivePortal.modify_network_config(config, captive_portal?)` can be used add RFC8910 compliant information to a `VintageNet` interface configuration.
+
 ### Config
 
 The `:nerves_captive_portal` config can be used for setting up the portal API. The endpoint config should not have to be changed, but the actual portal URL and state indicating function can be set.
