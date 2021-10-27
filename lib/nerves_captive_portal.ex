@@ -15,12 +15,16 @@ defmodule NervesCaptivePortal do
     if captive_portal? do
       api_host = Keyword.get(opts, :captive_portal_api_host, "captive.portal")
       api_port = Keyword.get(opts, :captive_portal_api_port, 4001)
-      put_in(config, [:dhcpd, :options, 114], "https://#{api_host}:#{api_port}/captive-portal/api")
       dnsd_records = Access.get(config[:dnsd], :records, [])
       [router_addr] = config[:dhcpd][:options][:router]
-      put_in(config, [:dnsd, :records], [ {api_host, router_addr} | dnsd_records])
+
+      # DHCPD option string needs to include quotes, hence the ~s("...")
+      config
+      |> put_in([:dhcpd, :options, 114], ~s("https://#{api_host}:#{api_port}/captive-portal/api"))
+      |> put_in([:dnsd, :records], [ {api_host, router_addr} | dnsd_records])
     else
-      put_in(config, [:dhcpd, :options, 114], "urn:ietf:params:capport:unrestricted")
+      config
+      |> put_in([:dhcpd, :options, 114], ~s("urn:ietf:params:capport:unrestricted"))
     end
   end
 end
