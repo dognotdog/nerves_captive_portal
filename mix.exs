@@ -33,7 +33,7 @@ defmodule NervesCaptivePortal.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.5.8"},
+      {:phoenix, "~> 1.6"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"}
     ]

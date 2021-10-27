@@ -20,6 +20,8 @@ The API uses the `application/captive+json` MIME type.
 
 When the captive portal routing is configured, assumed as IPv4 DHCP, `NervesCaptivePortal.modify_network_config(config, captive_portal?)` can be used add RFC8910 compliant information to a `VintageNet` interface configuration.
 
+A separate "User Portal" needs to provided that the `:user_portal_url` setting points to, as an interface for the user to do what is necessary to configure the network.
+
 ### Config
 
 The `:nerves_captive_portal` config can be used for setting up the portal API. The endpoint config should not have to be changed, but the actual portal URL and state indicating function can be set.

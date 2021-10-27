@@ -1,6 +1,6 @@
 defmodule NervesCaptivePortal do
   @moduledoc """
-  NervesCaptivePortal provides functions to 
+  NervesCaptivePortal helpers. 
   """
 
   @doc """
