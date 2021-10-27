@@ -34,6 +34,7 @@ defmodule NervesCaptivePortal.MixProject do
   defp deps do
     [
       {:phoenix, "~> 1.6"},
+      {:phoenix_html, "~> 3.0"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"}
     ]
