@@ -10,6 +10,8 @@ Config similar to [this post](https://medium.com/@antelle/how-to-generate-a-self
 openssl req -x509 -nodes -days 3650 -newkey rsa:4096 -keyout priv/ssl/portal-key.pem -out priv/ssl/portal-cert.pem -config portal-cert.config
 ```
 
+Note: the cert is valid for 10 years, if that's not long enough regenerate it with more `-days`.
+
 ## Usage
 
 The captive portal according to RFC8910 and RFC8908 is made up of two components: a special DHCP option that advertises the captive portal API, and the captive portal API itself. The API must run as HTTPS, and uses a self signed certificate, but apart from the basic JSON data it doesn't have to provide any further functionality.
@@ -33,11 +35,12 @@ config :nerves_captive_portal, NervesCaptivePortalWeb.Endpoint,
     certfile: "priv/ssl/portal-cert.pem",
   ]
 
-# captive fun can either be
+# :captive_fun can either be
 # - a captured function/0
-# - a {module, method/0} tuple
+# - a {module, method} tuple
+# to indicate if the user needs to interact with the portal
 config :nerves_captive_portal,
-  portal_url: "http://captive.portal/",
+  user_portal_url: "http://captive.portal/",
   captive_fun: fn -> true end
 ```
 

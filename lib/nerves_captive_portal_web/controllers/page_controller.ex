@@ -21,6 +21,6 @@ defmodule NervesCaptivePortalWeb.PageController do
   end
 
   defp portal_url() do
-    Application.get_env(:nerves_captive_portal, :portal_url, "http://captive.portal/")
+    Application.get_env(:nerves_captive_portal, :user_portal_url, "http://captive.portal/")
   end
 end

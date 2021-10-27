@@ -17,11 +17,12 @@ config :nerves_captive_portal, NervesCaptivePortalWeb.Endpoint,
     certfile: "priv/ssl/portal-cert.pem",
   ]
 
-# captive fun can either be
+# :captive_fun can either be
 # - a captured function/0
 # - a {module, method} tuple
+# to indicate if the user needs to interact with the portal
 config :nerves_captive_portal,
-  portal_url: "http://captive.portal/",
+  user_portal_url: "http://captive.portal/",
   captive_fun: fn -> true end
 
 # Configures Elixir's Logger
