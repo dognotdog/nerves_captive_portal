@@ -10,10 +10,12 @@ use Mix.Config
 # Configures the endpoint
 config :nerves_captive_portal, NervesCaptivePortalWeb.Endpoint,
   url: [host: "captive.portal"],
-  secret_key_base: "GJUnNqPI+rqm4dCO5LpKrFEnN882HBcvjcv/31q+bydZhZpeUDrjtxXuglSYmIlr",
-  render_errors: [view: NervesCaptivePortalWeb.ErrorView, accepts: ~w(html json), layout: false],
-  pubsub_server: NervesCaptivePortal.PubSub,
-  live_view: [signing_salt: "Z2gPf+wS"]
+  https: [
+    port: 4001,
+    otp_app: :nerves_captive_portal,
+    keyfile: "priv/ssl/portal-key.pem",
+    certfile: "priv/ssl/portal-cert.pem",
+  ]
 
 # Configures Elixir's Logger
 config :logger, :console,
@@ -23,6 +25,7 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+# This is the captive portal special mime type
 config :mime, :types, %{
   "application/captive+json" => ["captive-portal-json"]
 }
