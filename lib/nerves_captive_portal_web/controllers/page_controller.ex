@@ -4,6 +4,7 @@ defmodule NervesCaptivePortalWeb.PageController do
   def captive_portal_api(conn, _params) do
     conn
     |> put_resp_content_type("application/captive+json")
+    |> put_resp_header("cache-control", "no-store")
     |> json(%{
       captive: captive?(),
       "user-portal-url": portal_url(),
